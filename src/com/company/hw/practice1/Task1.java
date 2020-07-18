@@ -116,9 +116,9 @@ public class Task1 {
      * @param s
      * @return
      */
-    public static List<Character> findDuplicateChar(String s) {
+    public static Set<Character> findDuplicateChar(String s) {
         char[] arr = s.toCharArray();
-        List<Character> result = new ArrayList<>();
+        Set<Character> result = new HashSet<>();
         Set<Character> set = new HashSet<>();
         for (char c : arr) {
             if (set.contains(c)) {
@@ -208,7 +208,7 @@ public class Task1 {
                     }
                 }
             }
-            PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>(Comparator.comparingInt(Map.Entry::getValue));
+            PriorityQueue<Map.Entry<String, Integer>> pq = new PriorityQueue<>((o1, o2) -> o2.getValue() - o1.getValue());
             pq.addAll(wordsMap.entrySet());
             return pq.peek().getKey();
         } catch (FileNotFoundException e) {
@@ -232,15 +232,32 @@ public class Task1 {
         //Test for Q2
         System.out.println(wordsNumbers(s, " "));
 
-        //Test for Q10:
+        //Test for Q4:
+        System.out.println(isPalindrome(s));
+        System.out.println(isPalindrome("abcdeef3ii3feedcba"));
+
+        //Test for Q6:
+        System.out.println(findDuplicateChar(s));
+        System.out.println(findDuplicateChar("abbcdoe"));
+
+        int[] testq7 = {1, 2, 545, 6, 3, 2};
+        //Test for Q7
+        System.out.println(secondLargeNumber(testq7));
+
+        //Test for Q8
+        System.out.println(removeSpace(s));
+
+        //Test for Q9:
         List<Integer> testlist = new ArrayList<>();
         testlist.add(1);
         testlist.add(6);
         testlist.add(5);
         testlist.add(9);
         testlist.add(13);
-
         List<Integer> result = findMissingNumbs(testlist);
         System.out.println(result);
+
+        //Test for Q10:
+        System.out.println(findMostRepeatedWord("/Users/lirance/IdeaProjects/marlabs_practice/src/testq10.txt"));
     }
 }
